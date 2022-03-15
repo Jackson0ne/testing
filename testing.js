@@ -1,4 +1,4 @@
-const scriptver = "0.2";
+const scriptver = "0.3";
 
 document.getElementById("testdiv").style.background = "green";
-document.getElementById("testdiv").innerHTML = "This is now the newest!";
+document.getElementById("testdiv").innerHTML = "NEW NEW NEW!";
