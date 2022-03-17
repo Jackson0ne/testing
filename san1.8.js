@@ -1,4 +1,4 @@
-const rev = 0.1;
+const rev = 0.2;
 document.getElementById("rev").innerHTML = rev;
 
 //MAIN CONTENT FUNCTIONS
