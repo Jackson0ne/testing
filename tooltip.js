@@ -1,3 +1,6 @@
+const revtt = 0.1;
+document.getElementById("revtt").innerHTML = revtt;
+
 const fstt = require('fs');
 const pathtt = require('path');
 
