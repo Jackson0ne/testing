@@ -1,3 +1,5 @@
+const rev = "0.1";
+
 //MAIN CONTENT FUNCTIONS
 const { ipcRenderer, desktopCapturer, clipboard } = require('electron');
 const fs = require('fs');
