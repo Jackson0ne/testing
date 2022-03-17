@@ -1,4 +1,5 @@
 const rev = 0.1;
+document.getElementById("rev").innerHTML = rev;
 
 //MAIN CONTENT FUNCTIONS
 const { ipcRenderer, desktopCapturer, clipboard } = require('electron');
