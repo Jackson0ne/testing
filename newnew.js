@@ -1,1 +1,1 @@
-console.log("test")
+document.body.style.background = "lightskyblue"
