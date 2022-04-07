@@ -1,4 +1,4 @@
-document.getElementByTagName("body").style.background = "blueviolet"
+document.getElementsByTagName("body").style.background = "blueviolet"
 
 document.getElementById("test").innerHTML = "This is the seventh test"
 document.getElementById("test").style.color = "white"
