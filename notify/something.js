@@ -1,2 +1,2 @@
 alert("TESTING")
-document.body.style.background = "aqua"
+document.body.style.background = "lightskyblue"
