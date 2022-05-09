@@ -1,4 +1,6 @@
 const startapp = () => {
+    
+    console.log("This was downloaded from GitHub!")
 
     const { app, BrowserWindow, Menu, Tray, nativeImage, nativeTheme, ipcMain, dialog, desktopCapturer, powerMonitor, powerSaveBlocker, globalShortcut } = require('electron');
     const path = require('path');
