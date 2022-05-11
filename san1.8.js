@@ -7508,3 +7508,5 @@ ipcRenderer.on('warnmsg', (e, m) => {
 ipcRenderer.on('errormsg', (e, m) => {
     console.log(`%c${m}`, "color: red")
 })
+
+ipcRenderer.on('test', () => { console.log("This was from main.js - FROM GITHUB!") })
