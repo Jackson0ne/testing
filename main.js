@@ -138,6 +138,8 @@ const startapp = () => {
             } catch {
                 win.show();
             }
+            
+            win.webContents.send('test')
         });
     }
 
