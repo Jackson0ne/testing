@@ -1,6 +1,4 @@
 const startapp = () => {
-    
-    console.log("This was downloaded from GitHub!")
 
     const { app, BrowserWindow, Menu, Tray, nativeImage, nativeTheme, ipcMain, dialog, desktopCapturer, powerMonitor, powerSaveBlocker, globalShortcut } = require('electron');
     const path = require('path');
@@ -23,15 +21,16 @@ const startapp = () => {
     }
 
     const sanlocalappdata = path.join(localappdata,"Steam Achievement Notifier (V1.8)");
+    const respath = path.join(process.resourcesPath,"app")
 
     function CheckConfig() {
         if (!fs.existsSync(path.join(sanlocalappdata,"store"))) {
             fs.mkdirSync(path.join(sanlocalappdata,"store"));
             console.log("\"store\" dir created in %LOCALAPPDATA%\\Steam Achievement Notifier (V1.8)");
-            fs.copyFileSync(path.join(process.env.INIT_CWD,"store","config.json"), path.join(sanlocalappdata,"store","config.json"));
+            fs.copyFileSync(path.join(respath,"store","config.json"), path.join(sanlocalappdata,"store","config.json"));
             CheckGameStats()
         } else if (!fs.existsSync(path.join(sanlocalappdata,"store","config.json"))) {
-            fs.copyFileSync(path.join(process.env.INIT_CWD,"store","config.json"), path.join(sanlocalappdata,"store","config.json"));
+            fs.copyFileSync(path.join(respath,"store","config.json"), path.join(sanlocalappdata,"store","config.json"));
             CheckGameStats()
         } else {
             console.log("config.json exists")
@@ -43,9 +42,9 @@ const startapp = () => {
         if (!fs.existsSync(path.join(sanlocalappdata,"img"))) {
             fs.mkdirSync(path.join(sanlocalappdata,"img"));
             console.log("\"img\" dir created in %LOCALAPPDATA%\\Steam Achievement Notifier (V1.8)");
-            fs.copyFileSync(path.join(process.env.INIT_CWD,"img","sanlogo.ico"), path.join(sanlocalappdata,"img","sanlogo.ico"));
+            fs.copyFileSync(path.join(respath,"img","sanlogo.ico"), path.join(sanlocalappdata,"img","sanlogo.ico"));
         } else if (!fs.existsSync(path.join(sanlocalappdata,"img","sanlogo.ico"))) {
-            fs.copyFileSync(path.join(process.env.INIT_CWD,"img","sanlogo.ico"), path.join(sanlocalappdata,"img","sanlogo.ico"));
+            fs.copyFileSync(path.join(respath,"img","sanlogo.ico"), path.join(sanlocalappdata,"img","sanlogo.ico"));
         } else {
             console.log("sanlogo.ico exists")
         }
@@ -53,7 +52,7 @@ const startapp = () => {
 
     function CheckGameStats() {
         if (!fs.existsSync(path.join(sanlocalappdata,"store","gamestats.json"))) {
-            fs.copyFileSync(path.join(process.env.INIT_CWD,"store","gamestats.json"), path.join(sanlocalappdata,"store","gamestats.json"));
+            fs.copyFileSync(path.join(respath,"store","gamestats.json"), path.join(sanlocalappdata,"store","gamestats.json"));
         } else {
             console.log("gamestats.json exists")
         }
@@ -106,7 +105,7 @@ const startapp = () => {
             frame: false,
             center: true,
             title: "Steam Achievement Notifier (V" + ver + ")",
-            icon: (path.join(process.env.INIT_CWD,"img","sanlogo.ico")),
+            icon: (path.join(respath,"img","sanlogo.ico")),
             resizable: false,
             maximizable: false,
             fullscreenable: false,
@@ -120,7 +119,7 @@ const startapp = () => {
             }
         });
 
-        win.loadFile(path.join(process.env.INIT_CWD, "index.html"));
+        win.loadFile(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","app","index.html"));
 
         win.webContents.setBackgroundThrottling(false);
 
@@ -188,7 +187,7 @@ const startapp = () => {
         trackwin.setIgnoreMouseEvents(true);
         trackwin.setAlwaysOnTop(true, 'screen-saver');
 
-        trackwin.loadFile(path.join(process.env.INIT_CWD,"notify","track","track.html"));
+        trackwin.loadFile(path.join(__dirname,"notify","track","track.html"));
 
         trackwin.once('ready-to-show', function() {
             trackwin.show();
@@ -559,35 +558,35 @@ const startapp = () => {
 
         if (queueobj.type == "main") {
             if (queueobj.style == "default") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","default","main","default.html");
+                notifysrc = path.join(__dirname,"notify","default","main","default.html");
             } else if (queueobj.style == "xbox") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","xbox","main","xbox.html");
+                notifysrc = path.join(__dirname,"notify","xbox","main","xbox.html");
             } else if (queueobj.style == "playstation") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","playstation","main","playstation.html");
+                notifysrc = path.join(__dirname,"notify","playstation","main","playstation.html");
             } else if (queueobj.style == "ps5") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","ps5","main","ps5.html");
+                notifysrc = path.join(__dirname,"notify","ps5","main","ps5.html");
             } else if (queueobj.style == "windows") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","windows","main","windows.html");
+                notifysrc = path.join(__dirname,"notify","windows","main","windows.html");
             } else if (queueobj.style == "xbox360") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","xbox360","main","xbox360.html");
+                notifysrc = path.join(__dirname,"notify","xbox360","main","xbox360.html");
             } else if (queueobj.style == "xqjan") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","xqjan","main","xqjan.html");
+                notifysrc = path.join(__dirname,"notify","xqjan","main","xqjan.html");
             }
         } else {
             if (queueobj.style == "default") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","default","rare","defaultrare.html");
+                notifysrc = path.join(__dirname,"notify","default","rare","defaultrare.html");
             } else if (queueobj.style == "xbox") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","xbox","rare","xboxrare.html");
+                notifysrc = path.join(__dirname,"notify","xbox","rare","xboxrare.html");
             } else if (queueobj.style == "playstation") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","playstation","rare","playstationrare.html");
+                notifysrc = path.join(__dirname,"notify","playstation","rare","playstationrare.html");
             } else if (queueobj.style == "ps5") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","ps5","rare","ps5rare.html");
+                notifysrc = path.join(__dirname,"notify","ps5","rare","ps5rare.html");
             } else if (queueobj.style == "windows") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","windows","rare","windowsrare.html");
+                notifysrc = path.join(__dirname,"notify","windows","rare","windowsrare.html");
             } else if (queueobj.style == "xbox360") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","xbox360","rare","xbox360rare.html");
+                notifysrc = path.join(__dirname,"notify","xbox360","rare","xbox360rare.html");
             } else if (queueobj.style == "xqjan") {
-                notifysrc = path.join(process.env.INIT_CWD,"notify","xqjan","rare","xqjanrare.html");
+                notifysrc = path.join(__dirname,"notify","xqjan","rare","xqjanrare.html");
             }
         }
 
@@ -595,7 +594,7 @@ const startapp = () => {
 
         if (config.screenshot == "true" || config.rarescreenshot == "true") {
             desktopCapturer.getSources({ types: ['screen'], thumbnailSize: { width: 852, height: 480 }}).then(function(sources) {
-                // fs.writeFileSync(path.join(process.env.INIT_CWD,"img","ss.png"), sources[0].thumbnail.toPNG());
+                // fs.writeFileSync(path.join(__dirname,"img","ss.png"), sources[0].thumbnail.toPNG());
                 fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","img","ss.png"), sources[0].thumbnail.toPNG());
             });
         }
@@ -621,12 +620,12 @@ const startapp = () => {
     var trayexit;
 
     app.whenReady().then(function() {
-        tray = new Tray(path.join(process.env.INIT_CWD,"img","sanlogo.ico"));
+        tray = new Tray(path.join(respath,"img","sanlogo.ico"));
 
         const menuTemplate = [
             {
                 label: traylabel,
-                icon: nativeImage.createFromPath(path.join(process.env.INIT_CWD,"icon","dot_red.png")).resize({ width:16 }),
+                icon: nativeImage.createFromPath(path.join(respath,"icon","dot_red.png")).resize({ width:16 }),
                 enabled: false
             },
             {
@@ -635,14 +634,14 @@ const startapp = () => {
             },
             {
                 label: trayshow,
-                icon: nativeImage.createFromPath(path.join(process.env.INIT_CWD,"img","show.png")).resize({ width:16 }),
+                icon: nativeImage.createFromPath(path.join(respath,"img","show.png")).resize({ width:16 }),
                 click: function() {
                     win.show();
                 }
             },
             {
                 label: trayexit,
-                icon: nativeImage.createFromPath(path.join(process.env.INIT_CWD,"img","close.png")).resize({ width:16 }),
+                icon: nativeImage.createFromPath(path.join(respath,"img","close.png")).resize({ width:16 }),
                 click: function() {
                     app.exit(0);
                 }
@@ -659,7 +658,7 @@ const startapp = () => {
             const menuTemplate = [
                 {
                     label: traylabel,
-                    icon: nativeImage.createFromPath(path.join(process.env.INIT_CWD,"icon","dot_red.png")).resize({ width:16 }),
+                    icon: nativeImage.createFromPath(path.join(respath,"icon","dot_red.png")).resize({ width:16 }),
                     enabled: false
                 },
                 {
@@ -668,14 +667,14 @@ const startapp = () => {
                 },
                 {
                     label: trayshow,
-                    icon: nativeImage.createFromPath(path.join(process.env.INIT_CWD,"img","show.png")).resize({ width:16 }),
+                    icon: nativeImage.createFromPath(path.join(respath,"img","show.png")).resize({ width:16 }),
                     click: function() {
                     win.show();
                     }
                 },
                 {
                     label: trayexit,
-                    icon: nativeImage.createFromPath(path.join(process.env.INIT_CWD,"img","close.png")).resize({ width:16 }),
+                    icon: nativeImage.createFromPath(path.join(respath,"img","close.png")).resize({ width:16 }),
                     click: function() {
                     app.exit(0);
                     }
@@ -697,7 +696,7 @@ const startapp = () => {
             const menuTemplate = [
                 {
                     label: `${gamenamelbl}`,
-                    icon: nativeImage.createFromPath(path.join(process.env.INIT_CWD,"icon","dot_green.png")).resize({ width:16 }),
+                    icon: nativeImage.createFromPath(path.join(respath,"icon","dot_green.png")).resize({ width:16 }),
                     enabled: false
                 },
                 {
@@ -706,14 +705,14 @@ const startapp = () => {
                 },
                 {
                     label: trayshow,
-                    icon: nativeImage.createFromPath(path.join(process.env.INIT_CWD,"img","show.png")).resize({ width:16 }),
+                    icon: nativeImage.createFromPath(path.join(respath,"img","show.png")).resize({ width:16 }),
                     click: function() {
                     win.show();
                     }
                 },
                 {
                     label: trayexit,
-                    icon: nativeImage.createFromPath(path.join(process.env.INIT_CWD,"img","close.png")).resize({ width:16 }),
+                    icon: nativeImage.createFromPath(path.join(respath,"img","close.png")).resize({ width:16 }),
                     click: function() {
                     app.exit(0);
                     }
@@ -728,7 +727,7 @@ const startapp = () => {
             const menuTemplate = [
                 {
                     label: traylabel,
-                    icon: nativeImage.createFromPath(path.join(process.env.INIT_CWD,"icon","dot_red.png")).resize({ width:16 }),
+                    icon: nativeImage.createFromPath(path.join(respath,"icon","dot_red.png")).resize({ width:16 }),
                     enabled: false,
                 },
                 {
@@ -737,14 +736,14 @@ const startapp = () => {
                 },
                 {
                     label: trayshow,
-                    icon: nativeImage.createFromPath(path.join(process.env.INIT_CWD,"img","show.png")).resize({ width:16 }),
+                    icon: nativeImage.createFromPath(path.join(respath,"img","show.png")).resize({ width:16 }),
                     click: function() {
                     win.show();
                     }
                 },
                 {
                     label: trayexit,
-                    icon: nativeImage.createFromPath(path.join(process.env.INIT_CWD,"img","close.png")).resize({ width:16 }),
+                    icon: nativeImage.createFromPath(path.join(respath,"img","close.png")).resize({ width:16 }),
                     click: function() {
                     app.exit(0);
                     }
@@ -867,7 +866,7 @@ const startapp = () => {
             return new Promise((resolve) => {
                 setTimeout(() => {
                     desktopCapturer.getSources({ types: ['screen'], thumbnailSize: { width: 1920, height: 1080 }}).then(function(sources) {
-                        // fs.writeFileSync(path.join(process.env.INIT_CWD,"img","ss1080p.png"), sources[0].thumbnail.toPNG());
+                        // fs.writeFileSync(path.join(respath,"img","ss1080p.png"), sources[0].thumbnail.toPNG());
                         fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","img","ss1080p.png"), sources[0].thumbnail.toPNG());
                         resolve()
                     });
@@ -894,7 +893,7 @@ const startapp = () => {
                     }
                 });
 
-                imgwin.loadFile(path.join(process.env.INIT_CWD,"notify","imgwin","imgwin.html"))
+                imgwin.loadFile(path.join(respath,"notify","imgwin","imgwin.html"))
 
                 var ovpath;
                 
@@ -1176,7 +1175,7 @@ const startapp = () => {
             }
         });
 
-        dragwin.loadFile(path.join(process.env.INIT_CWD,"notify","dragwin","dragwin.html"));
+        dragwin.loadFile(path.join(respath,"notify","dragwin","dragwin.html"));
 
         dragwin.on('ready-to-show', () => {
             dragwin.webContents.send('postype', postype, style, dragwidth, dragheight);

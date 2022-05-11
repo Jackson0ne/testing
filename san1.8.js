@@ -35,19 +35,22 @@ if (process.platform == "win32") {
     ipcRenderer.send("uninstallcomplete");
 }
 
+const respath = path.join(process.resourcesPath,"app")
+
 const config = JSON.parse(fs.readFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json")));
 const gamestats = JSON.parse(fs.readFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","gamestats.json")));
 var launcher;
+var regkey;
 
 if (process.platform == "win32") {
-    var regkey = require(path.join(process.env.INIT_CWD,'node_modules','regedit'));
+    regkey = require(path.join(respath,'node_modules','regedit'));
     
     launcher = JSON.parse(fs.readFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","launcher.json")));
     launcher["firstlaunch"] = false;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","launcher.json"), JSON.stringify(launcher, null, 2));
 }
 
-fs.writeFileSync(path.join(process.env.INIT_CWD,"store","local.json"), "");
+fs.writeFileSync(path.join(respath,"store","local.json"), "");
 
 //CURRENT VERSION NUMBER
 var thisver = "1.84";
@@ -197,8 +200,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Rarity Percentage: ";
         document.getElementById("nosteamlbl").innerHTML = "Hide Steam Achievement Notification";
         document.getElementById("customiselbl").innerHTML = "CUSTOMISE...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Main';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Rare';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Main';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Rare';
         document.getElementById("customiserstylelbl").innerHTML = "ACHIEVEMENT STYLE:";
         document.getElementById("notifypositionlbl").innerHTML = "SCREEN POSITION:";
         document.getElementById("bgtypelbl").innerHTML = "BACKGROUND TYPE:";
@@ -325,8 +328,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "نسبة الندرة:";
         document.getElementById("nosteamlbl").innerHTML = "إخفاء تنبيهات Steam";
         document.getElementById("customiselbl").innerHTML = "أضفى طابع شخصي...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">الأساسية';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">نادر';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">الأساسية';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">نادر';
         document.getElementById("customiserstylelbl").innerHTML = "أسلوب الإنجاز:";
         document.getElementById("notifypositionlbl").innerHTML = "موضع الشاشة:";
         document.getElementById("bgtypelbl").innerHTML = "نوع الخلفية:";
@@ -448,8 +451,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Рядка Стойност: ";
         document.getElementById("nosteamlbl").innerHTML = "Скриване На Известието На Steam";
         document.getElementById("customiselbl").innerHTML = "РЕДАКТИРАНЕ...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Основен';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Рядко';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Основен';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Рядко';
         document.getElementById("customiserstylelbl").innerHTML = "СТИЛ НА ПОСТИЖЕНИЕ:";
         document.getElementById("notifypositionlbl").innerHTML = "ПОЗИЦИЯ НА ЕКРАНА:";
         document.getElementById("bgtypelbl").innerHTML = "ТИП ФОН:";
@@ -571,8 +574,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "稀有度：";
         document.getElementById("nosteamlbl").innerHTML = "隐藏 Steam 成就通知";
         document.getElementById("customiselbl").innerHTML = "个性化...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">主要的';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">稀有的';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">主要的';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">稀有的';
         document.getElementById("customiserstylelbl").innerHTML = "成就风格：";
         document.getElementById("notifypositionlbl").innerHTML = "屏幕位置：";
         document.getElementById("bgtypelbl").innerHTML = "背景类型：";
@@ -694,8 +697,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "稀有度： ";
         document.getElementById("nosteamlbl").innerHTML = "隱藏 Steam 成就通知";
         document.getElementById("customiselbl").innerHTML = "個性化...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">主要的';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">稀有的';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">主要的';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">稀有的';
         document.getElementById("customiserstylelbl").innerHTML = "成就風格：";
         document.getElementById("notifypositionlbl").innerHTML = "屏幕位置：";
         document.getElementById("bgtypelbl").innerHTML = "背景類型：";
@@ -817,8 +820,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Procento Vzácnosti: ";
         document.getElementById("nosteamlbl").innerHTML = "Skryjte Upozornění Steam";
         document.getElementById("customiselbl").innerHTML = "UPRAVIT...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Hlavní';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Vzácný';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Hlavní';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Vzácný';
         document.getElementById("customiserstylelbl").innerHTML = "STYL OZNÁMENÍ:";
         document.getElementById("notifypositionlbl").innerHTML = "POLOHA OBRAZOVKY:";
         document.getElementById("bgtypelbl").innerHTML = "TYP POZADÍ:";
@@ -940,8 +943,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Sjældenhedsprocent: ";
         document.getElementById("nosteamlbl").innerHTML = "Skjul Steam-Meddelelse";
         document.getElementById("customiselbl").innerHTML = "TILPASSER...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Hoved';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Sjælden';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Hoved';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Sjælden';
         document.getElementById("customiserstylelbl").innerHTML = "MEDDELELSESSTIL:";
         document.getElementById("notifypositionlbl").innerHTML = "SKÆRMPOSITION:";
         document.getElementById("bgtypelbl").innerHTML = "BAGGRUNDSTYPE:";
@@ -1063,8 +1066,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Zeldzaamheid: ";
         document.getElementById("nosteamlbl").innerHTML = "Steam-Melding Verbergen";
         document.getElementById("customiselbl").innerHTML = "BEWERK...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Voornaamst';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Zeldzaam';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Voornaamst';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Zeldzaam';
         document.getElementById("customiserstylelbl").innerHTML = "STIJL VAN MELDINGEN:";
         document.getElementById("notifypositionlbl").innerHTML = "SCHERMPOSITIE:";
         document.getElementById("bgtypelbl").innerHTML = "ACHTERGRONDTYPE:";
@@ -1186,8 +1189,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Harvinainen Prosentti: ";
         document.getElementById("nosteamlbl").innerHTML = "Piilota Steam-ilmoitus";
         document.getElementById("customiselbl").innerHTML = "MUOKKAA...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Tärkein';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Harvinainen';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Tärkein';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Harvinainen';
         document.getElementById("customiserstylelbl").innerHTML = "ILMOITUSTYYLI:";
         document.getElementById("notifypositionlbl").innerHTML = "NÄYTÖN ASENTO:";
         document.getElementById("bgtypelbl").innerHTML = "TAUSTATYYPPI:";
@@ -1309,8 +1312,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Pourcentage de Rareté: ";
         document.getElementById("nosteamlbl").innerHTML = "Masquer la Notification Steam";
         document.getElementById("customiselbl").innerHTML = "PERSONNALISER...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Principal';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Rare';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Principal';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Rare';
         document.getElementById("customiserstylelbl").innerHTML = "STYLE DE NOTIFICATION:";
         document.getElementById("notifypositionlbl").innerHTML = "POSITION DE L'ÉCRAN:";
         document.getElementById("bgtypelbl").innerHTML = "TYPE DE FOND:";
@@ -1432,8 +1435,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Seltenheitswert: ";
         document.getElementById("nosteamlbl").innerHTML = "Steam Benachrichtigung ausblenden";
         document.getElementById("customiselbl").innerHTML = "BEARBEITEN...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Haupt';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Selten';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Haupt';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Selten';
         document.getElementById("customiserstylelbl").innerHTML = "BENACHRICHTIGUNGSSTIL:";
         document.getElementById("notifypositionlbl").innerHTML = "BILDSCHIRMPOSITION:";
         document.getElementById("bgtypelbl").innerHTML = "HINTERGRUNDTYP:";
@@ -1555,8 +1558,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Αξία Σπανιότητας: ";
         document.getElementById("nosteamlbl").innerHTML = "Απόκρυψη Ειδοποίησης Steam";
         document.getElementById("customiselbl").innerHTML = "ΕΠΕΞΕΡΓΑΣΙΑ...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Κύριος';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Σπάνιος';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Κύριος';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Σπάνιος';
         document.getElementById("customiserstylelbl").innerHTML = "ΣΤΥΛ ΕΙΔΟΠΟΙΗΣΗΣ:";
         document.getElementById("notifypositionlbl").innerHTML = "ΘΕΣΗ ΟΘΟΝΗΣ:";
         document.getElementById("bgtypelbl").innerHTML = "ΤΥΠΟΣ ΥΠΟΒΑΘΡΟ:";
@@ -1678,8 +1681,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Ritkaság Százaléka: ";
         document.getElementById("nosteamlbl").innerHTML = "Steam Értesítés Elrejtése";
         document.getElementById("customiselbl").innerHTML = "TESTRESZAB...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Fő';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Ritka';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Fő';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Ritka';
         document.getElementById("customiserstylelbl").innerHTML = "ÉRTESÍTÉSI STÍLUS:";
         document.getElementById("notifypositionlbl").innerHTML = "A KÉPERNYŐ HELYZETE:";
         document.getElementById("bgtypelbl").innerHTML = "HÁTTÉRTÍPUS:";
@@ -1801,8 +1804,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Valore di Rarità: ";
         document.getElementById("nosteamlbl").innerHTML = "Nascondi la Notifica di Steam";
         document.getElementById("customiselbl").innerHTML = "MODIFICARE...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Principale';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Raro';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Principale';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Raro';
         document.getElementById("customiserstylelbl").innerHTML = "STILE DI NOTIFICA:";
         document.getElementById("notifypositionlbl").innerHTML = "POSIZIONE SCHERMO:";
         document.getElementById("bgtypelbl").innerHTML = "TIPO DI SFONDO:";
@@ -1924,8 +1927,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "レア度値：";
         document.getElementById("nosteamlbl").innerHTML = "Steam通知を非表示にする";
         document.getElementById("customiselbl").innerHTML = "カスタマイズ...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">主要';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">レア';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">主要';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">レア';
         document.getElementById("customiserstylelbl").innerHTML = "アチーブメントスタイル:";
         document.getElementById("notifypositionlbl").innerHTML = "画面の位置:";
         document.getElementById("bgtypelbl").innerHTML = "背景タイプ:";
@@ -2047,8 +2050,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "희귀도 백분율: ";
         document.getElementById("nosteamlbl").innerHTML = "Steam 알림 숨기기";
         document.getElementById("customiselbl").innerHTML = "커스터마이즈...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">기본';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">희귀 한';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">기본';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">희귀 한';
         document.getElementById("customiserstylelbl").innerHTML = "알림 스타일:";
         document.getElementById("notifypositionlbl").innerHTML = "화면 위치:";
         document.getElementById("bgtypelbl").innerHTML = "배경 유형:";
@@ -2170,8 +2173,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Sjeldenhetsprosent: ";
         document.getElementById("nosteamlbl").innerHTML = "Skjul Steam-Varsling";
         document.getElementById("customiselbl").innerHTML = "TILPASSE ...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Hoved';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Sjelden';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Hoved';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Sjelden';
         document.getElementById("customiserstylelbl").innerHTML = "MELDINGSSTIL:";
         document.getElementById("notifypositionlbl").innerHTML = "SKJERMPOSISJON:";
         document.getElementById("bgtypelbl").innerHTML = "BAKGRUNNSTYPE:";
@@ -2293,8 +2296,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Procent Rzadkości: ";
         document.getElementById("nosteamlbl").innerHTML = "Ukryj Powiadomienie Steam";
         document.getElementById("customiselbl").innerHTML = "DOSTOSUJ...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Główny';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Rzadki';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Główny';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Rzadki';
         document.getElementById("customiserstylelbl").innerHTML = "STYL POWIADOMIENIA:";
         document.getElementById("notifypositionlbl").innerHTML = "POZYCJA EKRANU:";
         document.getElementById("bgtypelbl").innerHTML = "RODZAJ TŁA:";
@@ -2416,8 +2419,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Valor de Raridade: ";
         document.getElementById("nosteamlbl").innerHTML = "Ocultar Notificação do Steam";
         document.getElementById("customiselbl").innerHTML = "CUSTOMIZAR...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Principal';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Raro';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Principal';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Raro';
         document.getElementById("customiserstylelbl").innerHTML = "ESTILO DE NOTIFICAÇÃO:";
         document.getElementById("notifypositionlbl").innerHTML = "POSIÇÃO DA TELA:";
         document.getElementById("bgtypelbl").innerHTML = "TIPO DE FUNDO:";
@@ -2539,8 +2542,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Procent de Raritate: ";
         document.getElementById("nosteamlbl").innerHTML = "Ascundeți Notificarea Steam";
         document.getElementById("customiselbl").innerHTML = "PERSONALIZĂ...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Principal';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Rar';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Principal';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Rar';
         document.getElementById("customiserstylelbl").innerHTML = "STILUL DE NOTIFICARE:";
         document.getElementById("notifypositionlbl").innerHTML = "POZIȚIA ECRANULUI:";
         document.getElementById("bgtypelbl").innerHTML = "TIP DE FUNDAL:";
@@ -2662,8 +2665,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Процент Редкости: ";
         document.getElementById("nosteamlbl").innerHTML = "Скрыть Уведомление Steam";
         document.getElementById("customiselbl").innerHTML = "НАСТРАИВАТЬ...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Главный';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Редкий';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Главный';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Редкий';
         document.getElementById("customiserstylelbl").innerHTML = "СТИЛЬ УВЕДОМЛЕНИЯ:";
         document.getElementById("notifypositionlbl").innerHTML = "ПОЛОЖЕНИЕ ЭКРАНА:";
         document.getElementById("bgtypelbl").innerHTML = "ТИП ФОНА:";
@@ -2785,8 +2788,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Valor de Rareza: ";
         document.getElementById("nosteamlbl").innerHTML = "Ocultar Notificación de Steam";
         document.getElementById("customiselbl").innerHTML = "PERSONALIZAR...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Principal';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Raro';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Principal';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Raro';
         document.getElementById("customiserstylelbl").innerHTML = "ESTILO DE NOTIFICACIÓN:";
         document.getElementById("notifypositionlbl").innerHTML = "POSICIÓN DE LA PANTALLA:";
         document.getElementById("bgtypelbl").innerHTML = "TIPO DE FONDO:";
@@ -2908,8 +2911,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Sällsynthetsprocent: ";
         document.getElementById("nosteamlbl").innerHTML = "Dölj Steam-Meddelande";
         document.getElementById("customiselbl").innerHTML = "PERSONIFIERA...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Huvudsaklig';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Sällsynt';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Huvudsaklig';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Sällsynt';
         document.getElementById("customiserstylelbl").innerHTML = "MEDDELANDE STIL:";
         document.getElementById("notifypositionlbl").innerHTML = "SKÄRMPOSITION:";
         document.getElementById("bgtypelbl").innerHTML = "BAKGRUNDSTYP:";
@@ -3031,8 +3034,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "เค่าความหายาก:";
         document.getElementById("nosteamlbl").innerHTML = "ซ่อนการแจ้งเตือน Steam";
         document.getElementById("customiselbl").innerHTML = "ปรับแต่ง...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">หลัก';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">หายาก';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">หลัก';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">หายาก';
         document.getElementById("customiserstylelbl").innerHTML = "รูปแบบการแจ้งเตือน:";
         document.getElementById("notifypositionlbl").innerHTML = "ตำแหน่งหน้าจอ:";
         document.getElementById("bgtypelbl").innerHTML = "ประเภทพื้นหลัง:";
@@ -3154,8 +3157,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Nadirlik Yüzdesi: ";
         document.getElementById("nosteamlbl").innerHTML = "Steam Bildirimini Gizle";
         document.getElementById("customiselbl").innerHTML = "ÖZELLEŞTİRMEK...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Ana';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Nadir';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Ana';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Nadir';
         document.getElementById("customiserstylelbl").innerHTML = "BİLDİRİM TARZI:";
         document.getElementById("notifypositionlbl").innerHTML = "EKRAN KONUMU:";
         document.getElementById("bgtypelbl").innerHTML = "ARKA PLAN TİPİ:";
@@ -3277,8 +3280,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Відсоток Рідкості: ";
         document.getElementById("nosteamlbl").innerHTML = "Приховати Сповіщення Steam";
         document.getElementById("customiselbl").innerHTML = "РЕДАГУВАТИ...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Головний';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Рідкісні';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Головний';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Рідкісні';
         document.getElementById("customiserstylelbl").innerHTML = "СТИЛЬ ПОВІДОМЛЕННЯ:";
         document.getElementById("notifypositionlbl").innerHTML = "ПОЛОЖЕННЯ ЕКРАНА:";
         document.getElementById("bgtypelbl").innerHTML = "ТИП ФОНУ:";
@@ -3400,8 +3403,8 @@ function LoadLang() {
         document.getElementById("raritylbl").innerHTML = "Giá Trị Quý Hiếm: ";
         document.getElementById("nosteamlbl").innerHTML = "Ẩn Thông Báo Thành Tích Steam";
         document.getElementById("customiselbl").innerHTML = "TÙY CHỈNH ...";
-        document.getElementById("customisermaintab").innerHTML = '<img src="./icon/emoji_events_gold.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Chủ Yếu';
-        document.getElementById("customiserraretab").innerHTML = '<img src="./icon/emoji_events_purple.png" width="12px" style="margin-right: 3px; padding-bottom: 1px">Hiếm';
+        document.getElementById("customisermaintab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_gold.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Chủ Yếu';
+        document.getElementById("customiserraretab").innerHTML = '<img src="' + path.join(respath,"icon","emoji_events_purple.png") + '" width="12px" style="margin-right: 3px; padding-bottom: 1px">Hiếm';
         document.getElementById("customiserstylelbl").innerHTML = "PHONG CÁCH THÔNG BÁO:";
         document.getElementById("notifypositionlbl").innerHTML = "VỊ TRÍ MÀN HÌNH:";
         document.getElementById("bgtypelbl").innerHTML = "LOẠI NỀN:";
@@ -3506,7 +3509,7 @@ function ResetOut() {
 function ResetAppConfirm() {
     var options = {
         title: "Steam Achievement Notifier",
-        icon: (path.join(__dirname, "img","sanlogo.ico")),
+        icon: (path.join(respath, "img","sanlogo.ico")),
         message: resettitle,
         detail: resetdesc,
         buttons: resetbtns,
@@ -3804,7 +3807,7 @@ function TestRareNotification() {
     CheckIfRunning();
 }
 
-var defaultsound = "./sound/notify.wav";
+var defaultsound = path.join(respath,"sound","notify.wav");
 
 function OpenSoundFile() {
     if (config.soundmode == "file") {
@@ -3874,7 +3877,7 @@ document.getElementById("soundfile").ondragover = function(event) {
     event.preventDefault();
 
     document.getElementById("soundfile").style.background = "#327a48";
-    document.getElementById("soundfile").innerHTML = addsound + " <img src='./icon/add_circle_green.svg' width='16px' style='vertical-align: -3px'>";
+    document.getElementById("soundfile").innerHTML = addsound + " <img src='" + path.join(respath,"icon","add_circle_green.svg") + "' width='16px' style='vertical-align: -3px'>";
 }
 
 document.getElementById("soundfile").ondragleave = function(event) {
@@ -3902,7 +3905,7 @@ function DropSound(event) {
                 LoadSound();
             } else {
                 document.getElementById("soundfile").style.background = "#7a3232";
-                document.getElementById("soundfile").innerHTML = "Invalid File Type <img src='./icon/cancel_red.svg' width='16px' style='vertical-align: -3px'>"
+                document.getElementById("soundfile").innerHTML = "Invalid File Type <img src='" + path.join(respath,"icon","cancel_red.svg") + ")' width='16px' style='vertical-align: -3px'>"
                 setTimeout(function() {
                     document.getElementById("soundfile").style.background = "#3d3d3d";
                     LoadSound();
@@ -3922,7 +3925,7 @@ document.getElementById("soundfilerare").ondragover = function(event) {
     event.preventDefault();
 
     document.getElementById("soundfilerare").style.background = "#327a48";
-    document.getElementById("soundfilerare").innerHTML = addsound + " <img src='./icon/add_circle_green.svg' width='16px' style='vertical-align: -3px'>";
+    document.getElementById("soundfilerare").innerHTML = addsound + " <img src='" + path.join(respath,"icon","add_circle_green.svg") + "' width='16px' style='vertical-align: -3px'>";
 }
 
 document.getElementById("soundfilerare").ondragleave = function(event) {
@@ -3949,7 +3952,7 @@ function DropRareSound(event) {
             LoadRareSound();
         } else {
             document.getElementById("soundfilerare").style.background = "#7a3232";
-            document.getElementById("soundfilerare").innerHTML = invalid + " <img src='./icon/cancel_red.svg' width='16px' style='vertical-align: -3px'>"
+            document.getElementById("soundfilerare").innerHTML = invalid + " <img src='" + path.join(respath,"icon","cancel_red.svg") + ")' width='16px' style='vertical-align: -3px'>"
             setTimeout(function() {
                 document.getElementById("soundfilerare").style.background = "#3d3d3d";
                 LoadRareSound();
@@ -3961,7 +3964,7 @@ function DropRareSound(event) {
 document.getElementById("imgselectcont").ondragover = function(event) {
     event.preventDefault();
     document.getElementById("imgselectcont").style.background = "rgba(50,205,50,0.2)";
-    document.getElementById("imgselectinnerlbl").innerHTML = '<img src="./icon/add_circle_green.svg" width="16px" style="vertical-align: -3px">' + addimage;
+    document.getElementById("imgselectinnerlbl").innerHTML = '<img src="' + path.join(respath,"icon","add_circle_green.svg") + '" width="16px" style="vertical-align: -3px">' + addimage;
 }
 
 document.getElementById("imgselectcont").ondragleave = function(event) {
@@ -3990,7 +3993,7 @@ function DropImage(event) {
             GetBGType();
         } else {
             document.getElementById("imgselectcont").style.background = "rgba(255,0,0,0.2)";
-            document.getElementById("imgselectinnerlbl").innerHTML = '<img src="./icon/cancel_red.svg" width="16px" style="vertical-align: -3px">Invalid File Type'
+            document.getElementById("imgselectinnerlbl").innerHTML = '<img src="' + path.join(respath,"icon","cancel_red.svg") + ')" width="16px" style="vertical-align: -3px">Invalid File Type'
             setTimeout(function() {
                 document.getElementById("imgselectcont").style.background = "#1b1b1b";
                 document.getElementById("imgselectinnerlbl").innerHTML = '<img src="" id="imgselecticon" width="169px" height="96px">';
@@ -3998,7 +4001,7 @@ function DropImage(event) {
             }, 1000);
         }
         paused = false;
-        document.getElementById("pause").src = "./icon/pause_white.svg";
+        document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
         document.getElementById("webview").reload();
     }
 }
@@ -4006,7 +4009,7 @@ function DropImage(event) {
 document.getElementById("rareimgselectcont").ondragover = function(event) {
     event.preventDefault();
     document.getElementById("rareimgselectcont").style.background = "rgba(50,205,50,0.2)";
-    document.getElementById("rareimgselectinnerlbl").innerHTML = '<img src="./icon/add_circle_green.svg" width="16px" style="vertical-align: -3px">Add Selected Image'
+    document.getElementById("rareimgselectinnerlbl").innerHTML = '<img src="' + path.join(respath,"icon","add_circle_green.svg") + '" width="16px" style="vertical-align: -3px">Add Selected Image'
 }
 
 document.getElementById("rareimgselectcont").ondragleave = function(event) {
@@ -4035,7 +4038,7 @@ function DropRareImage(event) {
             GetRareBGType();
         } else {
             document.getElementById("rareimgselectcont").style.background = "rgba(255,0,0,0.2)";
-            document.getElementById("rareimgselectinnerlbl").innerHTML = '<img src="./icon/cancel_red.svg" width="16px" style="vertical-align: -3px">' + invalid;
+            document.getElementById("rareimgselectinnerlbl").innerHTML = '<img src="' + path.join(respath,"icon","cancel_red.svg") + ')" width="16px" style="vertical-align: -3px">' + invalid;
             setTimeout(function() {
                 document.getElementById("rareimgselectcont").style.background = "#1b1b1b";
                 document.getElementById("rareimgselectinnerlbl").innerHTML = '<img src="" id="rareimgselecticon" width="169px" height="96px">';
@@ -4043,7 +4046,7 @@ function DropRareImage(event) {
             }, 1000);
         }
         paused = false;
-        document.getElementById("pauserare").src = "./icon/pause_white.svg";
+        document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
         document.getElementById("webviewrare").reload();
     }
 }
@@ -4216,16 +4219,16 @@ function ChangeSoundMode(event) {
 
 function SearchHover() {
     if (config.soundmode == "file") {
-        document.getElementById("searchhover").src = "./icon/file_black.svg";
-        document.getElementById("soundmodediv").innerHTML = "<img src='./icon/audiofile.svg' width='16px' style='margin: 0px 3px 3px 0px'>" + soundmode + " <span style='color: lightskyblue; margin-left: 3px'>" + file + "</span>";
+        document.getElementById("searchhover").src = path.join(respath,"icon","file_black.svg");
+        document.getElementById("soundmodediv").innerHTML = "<img src='" + path.join(respath,"icon","audiofile.svg") + "' width='16px' style='margin: 0px 3px 3px 0px'>" + soundmode + " <span style='color: lightskyblue; margin-left: 3px'>" + file + "</span>";
         if (config.sound == "") {
             document.getElementById("soundfile").innerHTML = nosound;
         } else {
             document.getElementById("soundfile").innerHTML = config.sound;
         }
     } else {
-        document.getElementById("searchhoverdir").src = "./icon/dice_black.svg";
-        document.getElementById("soundmodediv").innerHTML = "<img src='./icon/dice.svg' width='16px' style='margin-right: 5px'>" + soundmode + "<span style='-webkit-background-clip: text; color: transparent; background-image: linear-gradient(90deg, #e8f74d, #ff6600d9, #00ff66, #13ff13, #ad27ad, #bd2681, #6512b9, #ff3300de, #5aabde); background-size: 400%; animation: glow 5s linear infinite; margin-left: 3px'>" + randomised + "</span>";
+        document.getElementById("searchhoverdir").src = path.join(respath,"icon","dice_black.svg");
+        document.getElementById("soundmodediv").innerHTML = "<img src='" + path.join(respath,"icon","dice.svg") + "' width='16px' style='margin-right: 5px'>" + soundmode + "<span style='-webkit-background-clip: text; color: transparent; background-image: linear-gradient(90deg, #e8f74d, #ff6600d9, #00ff66, #13ff13, #ad27ad, #bd2681, #6512b9, #ff3300de, #5aabde); background-size: 400%; animation: glow 5s linear infinite; margin-left: 3px'>" + randomised + "</span>";
         if (config.sounddir == "") {
             document.getElementById("soundfile").innerHTML = nofolder;
         } else {
@@ -4238,9 +4241,9 @@ function SearchHover() {
 
 function SearchOut() {
     if (config.soundmode == "file") {
-        document.getElementById("searchhover").src = "./icon/file_white.svg";
+        document.getElementById("searchhover").src = path.join(respath,"icon","file_white.svg");
     } else {
-        document.getElementById("searchhoverdir").src = "./icon/dice.svg";
+        document.getElementById("searchhoverdir").src = path.join(respath,"icon","dice.svg");
     }
     document.getElementById("soundfile").style.borderTop = "1px solid white";
     document.getElementById("soundfile").style.background = "linear-gradient(45deg, #2d2d2d 0%, #3d3d3d 50%, #2d2d2d 100%)";
@@ -4269,11 +4272,11 @@ function LoadSound() {
 LoadSound();
 
 function PreviewHover() {
-    document.getElementById("previewhover").src = "./icon/volume_up_black.svg";
+    document.getElementById("previewhover").src = path.join(respath,"icon","volume_up_black.svg");
 }
 
 function PreviewOut() {
-    document.getElementById("previewhover").src = "./icon/volume_up_white.svg";
+    document.getElementById("previewhover").src = path.join(respath,"icon","volume_up_white.svg");
 }
 
 function PreviewSound() {
@@ -4298,11 +4301,11 @@ function StopSound() {
 }
 
 if (config.raresoundmode == "file") {
-    document.getElementById("soundmodedivrare").innerHTML = "<img src='./icon/audiofile.svg'>" + soundmode + "<span style='color: lightskyblue'>" + file + "</span>";
+    document.getElementById("soundmodedivrare").innerHTML = "<img src='" + path.join(respath,"icon","audiofile.svg") + "'>" + soundmode + "<span style='color: lightskyblue'>" + file + "</span>";
     document.getElementById("searchhoverrare").style.transform = "translateY(0px)";
     document.getElementById("searchhoverdirrare").style.transform = "translateY(50px)";
 } else {
-    document.getElementById("soundmodedivrare").innerHTML = "<img src='./icon/dice.svg' width='16px' style='margin-right: 5px'>" + soundmode + "<span style='-webkit-background-clip: text; color: transparent; background-image: linear-gradient(90deg, #e8f74d, #ff6600d9, #00ff66, #13ff13, #ad27ad, #bd2681, #6512b9, #ff3300de, #5aabde); background-size: 400%; animation: glow 5s linear infinite; margin-left: 3px'>" + randomised + "</span>";
+    document.getElementById("soundmodedivrare").innerHTML = "<img src='" + path.join(respath,"icon","dice.svg") + "' width='16px' style='margin-right: 5px'>" + soundmode + "<span style='-webkit-background-clip: text; color: transparent; background-image: linear-gradient(90deg, #e8f74d, #ff6600d9, #00ff66, #13ff13, #ad27ad, #bd2681, #6512b9, #ff3300de, #5aabde); background-size: 400%; animation: glow 5s linear infinite; margin-left: 3px'>" + randomised + "</span>";
     document.getElementById("searchhoverrare").style.transform = "translateY(-50px)";
     document.getElementById("searchhoverdirrare").style.transform = "translateY(0px)";
 }
@@ -4417,16 +4420,16 @@ function ChangeRareSoundMode(event) {
 
 function SearchRareHover() {
     if (config.raresoundmode == "file") {
-        document.getElementById("searchhoverrare").src = "./icon/file_black.svg";
-        document.getElementById("soundmodedivrare").innerHTML = "<img src='./icon/audiofile.svg' width='16px' style='margin: 0px 3px 3px 0px'>" + soundmode + "<span style='color: lightskyblue; margin-left: 3px'>" + file + "</span>";
+        document.getElementById("searchhoverrare").src = path.join(respath,"icon","file_black.svg");
+        document.getElementById("soundmodedivrare").innerHTML = "<img src='" + path.join(respath,"icon","audiofile.svg") + "' width='16px' style='margin: 0px 3px 3px 0px'>" + soundmode + "<span style='color: lightskyblue; margin-left: 3px'>" + file + "</span>";
         if (config.raresound == "") {
             document.getElementById("soundfilerare").innerHTML = nosound;
         } else {
             document.getElementById("soundfilerare").innerHTML = config.raresound;
         }
     } else {
-        document.getElementById("searchhoverdirrare").src = "./icon/dice_black.svg";
-        document.getElementById("soundmodedivrare").innerHTML = "<img src='./icon/dice.svg' width='16px' style='margin-right: 5px'>" + soundmode + "<span style='-webkit-background-clip: text; color: transparent; background-image: linear-gradient(90deg, #e8f74d, #ff6600d9, #00ff66, #13ff13, #ad27ad, #bd2681, #6512b9, #ff3300de, #5aabde); background-size: 400%; animation: glow 5s linear infinite; margin-left: 3px'>" + randomised + "</span>";
+        document.getElementById("searchhoverdirrare").src = path.join(respath,"icon","dice_black.svg");
+        document.getElementById("soundmodedivrare").innerHTML = "<img src='" + path.join(respath,"icon","dice.svg") + "' width='16px' style='margin-right: 5px'>" + soundmode + "<span style='-webkit-background-clip: text; color: transparent; background-image: linear-gradient(90deg, #e8f74d, #ff6600d9, #00ff66, #13ff13, #ad27ad, #bd2681, #6512b9, #ff3300de, #5aabde); background-size: 400%; animation: glow 5s linear infinite; margin-left: 3px'>" + randomised + "</span>";
         if (config.raresounddir == "") {
             document.getElementById("soundfilerare").innerHTML = nofolder;
         } else {
@@ -4439,9 +4442,9 @@ function SearchRareHover() {
 
 function SearchRareOut() {
     if (config.raresoundmode == "file") {
-        document.getElementById("searchhoverrare").src = "./icon/file_white.svg";
+        document.getElementById("searchhoverrare").src = path.join(respath,"icon","file_white.svg");
     } else {
-        document.getElementById("searchhoverdirrare").src = "./icon/dice.svg";
+        document.getElementById("searchhoverdirrare").src = path.join(respath,"icon","dice.svg");
     }
     document.getElementById("soundfilerare").style.borderTop = "1px solid white";
     document.getElementById("soundfilerare").style.background = "linear-gradient(45deg, #2d2d2d 0%, #3d3d3d 50%, #2d2d2d 100%)";
@@ -4470,11 +4473,11 @@ function LoadRareSound() {
 LoadRareSound();
 
 function PreviewRareHover() {
-    document.getElementById("previewhoverrare").src = "./icon/volume_up_black.svg";
+    document.getElementById("previewhoverrare").src = path.join(respath,"icon","volume_up_black.svg");
 }
 
 function PreviewRareOut() {
-    document.getElementById("previewhoverrare").src = "./icon/volume_up_white.svg";
+    document.getElementById("previewhoverrare").src = path.join(respath,"icon","volume_up_white.svg");
 }
 
 function PreviewRareSound() {
@@ -4508,7 +4511,7 @@ function GetPlayerName() {
     if (!apikey || !steam64id) {
         document.getElementById("username").innerHTML = nouser;
         document.getElementById("username").style.color = "red";
-        document.getElementById("statusdot").src = "./icon/dot_red.svg";
+        document.getElementById("statusdot").src = path.join(respath,"icon","dot_red.svg");
     } else {
         fetch(apiurl).then(response => response.json()).then((data) => {
             username = data.response.players[0].personaname;
@@ -4520,11 +4523,11 @@ function GetPlayerName() {
             }
 
             document.getElementById("username").style.color = "white";
-            document.getElementById("statusdot").src = "./icon/dot_green.svg";
+            document.getElementById("statusdot").src = path.join(respath,"icon","dot_green.svg");
         }).catch(error => {
             document.getElementById("username").innerHTML = nouser;
             document.getElementById("username").style.color = "red";
-            document.getElementById("statusdot").src = "./icon/dot_red.svg";
+            document.getElementById("statusdot").src = path.join(respath,"icon","dot_red.svg");
 
             console.log("%USERNAME ERROR: " + error, "color: red")
         });
@@ -4628,10 +4631,10 @@ function CreateDesktopShortcut() {
 function ShowAPI() {
     if (document.getElementById("apibox").type == "password") {
         document.getElementById("apibox").type = "text";
-        document.getElementById("eye").src = "./icon/visibility.svg";
+        document.getElementById("eye").src = path.join(respath,"icon","visibility.svg");
     } else {
         document.getElementById("apibox").type = "password";
-        document.getElementById("eye").src = "./icon/visibility_off.svg";
+        document.getElementById("eye").src = path.join(respath,"icon","visibility_off.svg");
     }
 }
 
@@ -4920,7 +4923,7 @@ function ToggleStartWin() {
     if (config.startwin == "false") {
         config["startwin"] = "true";
         fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
-        spawn("powershell.exe",["-Command",`$shell = New-Object -ComObject WScript.Shell; $shortcut = $shell.CreateShortcut('` + path.join(process.env.APPDATA,"Microsoft","Windows","Start Menu","Programs","Startup","Steam Achievement Notifier (V" + thisver + ").lnk") + `'); $shortcut.IconLocation = '` + path.join(__dirname,"img","sanlogo.ico") + `'; $shortcut.TargetPath = '` + launcher.path + `'; $shortcut.Save();`]);
+        spawn("powershell.exe",["-Command",`$shell = New-Object -ComObject WScript.Shell; $shortcut = $shell.CreateShortcut('` + path.join(process.env.APPDATA,"Microsoft","Windows","Start Menu","Programs","Startup","Steam Achievement Notifier (V" + thisver + ").lnk") + `'); $shortcut.IconLocation = '` + path.join(respath,"img","sanlogo.ico") + `'; $shortcut.TargetPath = '` + launcher.path + `'; $shortcut.Save();`]);
     } else {
         config["startwin"] = "false";
         fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
@@ -5035,7 +5038,7 @@ LoadNotifyRare();
 
 function ExpandCustomise() {
     document.getElementById("customiselbl").style.display = "flex";
-    document.getElementById("customiseicon").src = "./icon/tune_black.svg";
+    document.getElementById("customiseicon").src = path.join(respath,"icon","tune_black.svg");
     document.getElementById("customisecont").style.bottom = "64px";
     document.getElementById("customisecont").style.height = "38px";
 
@@ -5047,7 +5050,7 @@ function ExpandCustomise() {
 
 function ShrinkCustomise() {
     document.getElementById("customiselbl").style.display = "none";
-    document.getElementById("customiseicon").src = "./icon/tune_white.svg";
+    document.getElementById("customiseicon").src = path.join(respath,"icon","tune_white.svg");
     document.getElementById("customisecont").style.bottom = "68px";
     document.getElementById("customisecont").style.height = "30px";
 
@@ -5089,7 +5092,7 @@ function CloseCustomiser() {
 
 function ReplayNotification() {
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     document.getElementById("webview").reload();
 }
 
@@ -5098,29 +5101,29 @@ var paused = false;
 function PauseNotification() {
     if (paused == false) {
         paused = true;
-        document.getElementById("pause").src = "./icon/play_white.svg";
+        document.getElementById("pause").src = path.join(respath,"icon","play_white.svg");
         document.getElementById("webview").send('pausenotify');
     } else {
         paused = false;
-        document.getElementById("pause").src = "./icon/pause_white.svg";
+        document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
         document.getElementById("webview").send('playnotify');
     }
 }
 
 function ReplayRareNotification() {
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     document.getElementById("webviewrare").reload();
 }
 
 function PauseRareNotification() {
     if (paused == false) {
         paused = true;
-        document.getElementById("pauserare").src = "./icon/play_white.svg";
+        document.getElementById("pauserare").src = path.join(respath,"icon","play_white.svg");
         document.getElementById("webviewrare").send('pausenotify');
     } else {
         paused = false;
-        document.getElementById("pauserare").src = "./icon/pause_white.svg";
+        document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
         document.getElementById("webviewrare").send('playnotify');
     }
 }
@@ -5195,7 +5198,7 @@ function GetNotifyStyle() {
             notifyheight = 50;
         }
         paused = false;
-        document.getElementById("pause").src = "./icon/pause_white.svg";
+        document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webview").src = "./notify/default/preview/defaultpreview.html";
         } catch (err) {
@@ -5210,7 +5213,7 @@ function GetNotifyStyle() {
             notifyheight = 65;
         }
         paused = false;
-        document.getElementById("pause").src = "./icon/pause_white.svg";
+        document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webview").src = "./notify/xbox/preview/xboxpreview.html";
         } catch (err) {
@@ -5225,7 +5228,7 @@ function GetNotifyStyle() {
             notifyheight = 55;
         }
         paused = false;
-        document.getElementById("pause").src = "./icon/pause_white.svg";
+        document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webview").src = "./notify/playstation/preview/playstationpreview.html";
         } catch (err) {
@@ -5240,7 +5243,7 @@ function GetNotifyStyle() {
             notifyheight = 50;
         }
         paused = false;
-        document.getElementById("pause").src = "./icon/pause_white.svg";
+        document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webview").src = "./notify/ps5/preview/ps5preview.html";
         } catch (err) {
@@ -5255,7 +5258,7 @@ function GetNotifyStyle() {
             notifyheight = 110;
         }
         paused = false;
-        document.getElementById("pause").src = "./icon/pause_white.svg";
+        document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webview").src = "./notify/windows/preview/windowspreview.html";
         } catch (err) {
@@ -5270,7 +5273,7 @@ function GetNotifyStyle() {
             notifyheight = 50;
         }
         paused = false;
-        document.getElementById("pause").src = "./icon/pause_white.svg";
+        document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webview").src = "./notify/xbox360/preview/xbox360preview.html";
         } catch (err) {
@@ -5285,7 +5288,7 @@ function GetNotifyStyle() {
             notifyheight = 70;
         }
         paused = false;
-        document.getElementById("pause").src = "./icon/pause_white.svg";
+        document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webview").src = "./notify/xqjan/preview/xqjanpreview.html";
         } catch (err) {
@@ -5317,7 +5320,7 @@ function GetNotifyStyleRare() {
             notifyheight = 50;
         }
         paused = false;
-        document.getElementById("pauserare").src = "./icon/pause_white.svg";
+        document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webviewrare").src = "./notify/default/rarepreview/defaultrarepreview.html";
         } catch (err) {
@@ -5332,7 +5335,7 @@ function GetNotifyStyleRare() {
             notifyheight = 65;
         }
         paused = false;
-        document.getElementById("pauserare").src = "./icon/pause_white.svg";
+        document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webviewrare").src = "./notify/xbox/rarepreview/xboxrarepreview.html";
         } catch (err) {
@@ -5347,7 +5350,7 @@ function GetNotifyStyleRare() {
             notifyheight = 55;
         }
         paused = false;
-        document.getElementById("pauserare").src = "./icon/pause_white.svg";
+        document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webviewrare").src = "./notify/playstation/rarepreview/playstationrarepreview.html";
         } catch (err) {
@@ -5362,7 +5365,7 @@ function GetNotifyStyleRare() {
             notifyheight = 50;
         }
         paused = false;
-        document.getElementById("pauserare").src = "./icon/pause_white.svg";
+        document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webviewrare").src = "./notify/ps5/rarepreview/ps5rarepreview.html";
         } catch (err) {
@@ -5377,7 +5380,7 @@ function GetNotifyStyleRare() {
             notifyheight = 110;
         }
         paused = false;
-        document.getElementById("pauserare").src = "./icon/pause_white.svg";
+        document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webviewrare").src = "./notify/windows/rarepreview/windowsrarepreview.html";
         } catch (err) {
@@ -5392,7 +5395,7 @@ function GetNotifyStyleRare() {
             notifyheight = 50;
         }
         paused = false;
-        document.getElementById("pause").src = "./icon/pause_white.svg";
+        document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webviewrare").src = "./notify/xbox360/rarepreview/xbox360rarepreview.html";
         } catch (err) {
@@ -5407,7 +5410,7 @@ function GetNotifyStyleRare() {
             notifyheight = 70;
         }
         paused = false;
-        document.getElementById("pause").src = "./icon/pause_white.svg";
+        document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
         try {
             document.getElementById("webviewrare").src = "./notify/xqjan/rarepreview/xqjanrarepreview.html";
         } catch (err) {
@@ -5464,7 +5467,7 @@ function GetBGType() {
         document.getElementById("imgselectlbl").style.display = "flex";
         document.getElementById("imgselectcont").style.display = "flex";
         if (config.img == "default") {
-            document.getElementById("imgselecticon").src = "./img/santextlogobg.png";
+            document.getElementById("imgselecticon").src = path.join(respath,"img","santextlogobg.png");
         } else {
             document.getElementById("imgselecticon").src = config.img;
         }
@@ -5475,7 +5478,7 @@ function GetBGType() {
     document.getElementById("iconroundness").value = config.iconroundness;
     document.getElementById("iconroundnesspreview").style.borderRadius = (config.iconroundness * 0.6) + "px";
     if (config.icon == "") {
-        document.getElementById("iconselecticon").src = "./img/sanlogosquare.svg";
+        document.getElementById("iconselecticon").src = path.join(respath,"img","sanlogosquare.svg");
     } else {
         document.getElementById("iconselecticon").src = config.icon;
     }
@@ -5524,7 +5527,7 @@ function GetRareBGType() {
         document.getElementById("rareimgselectlbl").style.display = "flex";
         document.getElementById("rareimgselectcont").style.display = "flex";
         if (config.rareimg == "default") {
-            document.getElementById("rareimgselecticon").src = "./img/santextlogobg.png";
+            document.getElementById("rareimgselecticon").src = path.join(respath,"img","santextlogobg.png");
         } else {
             document.getElementById("rareimgselecticon").src = config.rareimg;
         }
@@ -5535,7 +5538,7 @@ function GetRareBGType() {
     document.getElementById("iconroundnessrare").value = config.rareiconroundness;
     document.getElementById("iconroundnesspreviewrare").style.borderRadius = (config.rareiconroundness * 0.6) + "px";
     if (config.rareicon == "") {
-        document.getElementById("rareiconselecticon").src = "./img/sanlogosquare.svg";
+        document.getElementById("rareiconselecticon").src = path.join(respath,"img","sanlogosquare.svg");
     } else {
         document.getElementById("rareiconselecticon").src = config.rareicon;
     }
@@ -5568,7 +5571,7 @@ function SetTopLeft() {
     config["notifypos"] = pos;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));   
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     ReplayNotification();
 }
 
@@ -5583,7 +5586,7 @@ function SetTopCenter() {
     config["notifypos"] = pos;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     ReplayNotification();
 }
 
@@ -5598,7 +5601,7 @@ function SetTopRight() {
     config["notifypos"] = pos;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     ReplayNotification();
 }
 
@@ -5613,7 +5616,7 @@ function SetBottomLeft() {
     config["notifypos"] = pos;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     ReplayNotification();
 }
 
@@ -5628,7 +5631,7 @@ function SetBottomCenter() {
     config["notifypos"] = pos;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     ReplayNotification();
 }
 
@@ -5643,7 +5646,7 @@ function SetBottomRight() {
     config["notifypos"] = pos;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     ReplayNotification();
 }
 
@@ -5658,7 +5661,7 @@ function SetTopLeftRare() {
     config["rarenotifypos"] = rarepos;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));   
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     ReplayRareNotification();
 }
 
@@ -5673,7 +5676,7 @@ function SetTopCenterRare() {
     config["rarenotifypos"] = rarepos;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     ReplayRareNotification();
 }
 
@@ -5688,7 +5691,7 @@ function SetTopRightRare() {
     config["rarenotifypos"] = rarepos;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     ReplayRareNotification();
 }
 
@@ -5703,7 +5706,7 @@ function SetBottomLeftRare() {
     config["rarenotifypos"] = rarepos;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     ReplayRareNotification();
 }
 
@@ -5718,7 +5721,7 @@ function SetBottomCenterRare() {
     config["rarenotifypos"] = rarepos;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     ReplayRareNotification();
 }
 
@@ -5733,7 +5736,7 @@ function SetBottomRightRare() {
     config["rarenotifypos"] = rarepos;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     ReplayRareNotification();
 }
 
@@ -5816,7 +5819,7 @@ document.getElementById("imgselect").onchange = function(selection) {
     PauseNotification();
     GetBGType();
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     ReplayNotification();
 }
 
@@ -5825,10 +5828,10 @@ document.getElementById("rareimgselect").onchange = function(selection) {
     config["rareimg"] = (file.path).replace(/\\/g,"/");
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     GetRareBGType();
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     ReplayRareNotification();
 }
 
@@ -5843,7 +5846,7 @@ document.getElementById("iconselect").onchange = function(selection) {
     PauseNotification();
     GetBGType();
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     ReplayNotification();
 }
 
@@ -5856,10 +5859,10 @@ document.getElementById("rareiconselect").onchange = function(selection) {
     } catch {}
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     GetRareBGType();
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     ReplayRareNotification();
 }
 
@@ -5871,7 +5874,7 @@ function SetDisplayTime() {
     config["displaytime"] = displaytime;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     document.getElementById("webview").reload();
 }
 
@@ -5883,7 +5886,7 @@ function SetRareDisplayTime() {
     config["raredisplaytime"] = displaytime;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     document.getElementById("webviewrare").reload();
 }
 
@@ -5957,17 +5960,17 @@ function ToggleMainTab() {
 
 document.getElementById("customisermaintab").addEventListener('click', function() {
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
 });
 
 document.getElementById("notifyplay").addEventListener('click', function() {
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
 });
 
 document.getElementById("customiserstyledropdown").addEventListener('change', function() {
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
 });
 
 function ToggleRareTab() {
@@ -6013,17 +6016,17 @@ function ToggleRareTab() {
 
 document.getElementById("customiserraretab").addEventListener('click', function() {
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
 });
 
 document.getElementById("notifyplayrare").addEventListener('click', function() {
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
 });
 
 document.getElementById("customiserstyledropdownrare").addEventListener('change', function() {
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
 });
 
 var configkeybind = config.keybind;
@@ -6239,7 +6242,7 @@ function SetScale() {
     config["scale"] = document.getElementById("scaleslider").value;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     document.getElementById("webview").reload();
 }
 
@@ -6250,7 +6253,7 @@ function SetRareScale() {
     config["rarescale"] = document.getElementById("scalesliderrare").value;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     document.getElementById("webviewrare").reload();
 }
 
@@ -6973,7 +6976,7 @@ function ToggleNoSteam() {
             SetSkinInReg();
         } else {
             fs.mkdirSync(path.join(steampath,"skins","NoSteamNotifications","resource","styles"), { recursive: true });
-            fs.copyFileSync(path.join(__dirname,"store","steam.styles"), path.join(steampath,"skins","NoSteamNotifications","resource","styles","steam.styles"));
+            fs.copyFileSync(path.join(respath,"store","steam.styles"), path.join(steampath,"skins","NoSteamNotifications","resource","styles","steam.styles"));
 
             SetSkinInReg();
         }
@@ -7094,7 +7097,7 @@ function GameCompletionNotification() {
     var notifyachievement = gamecomplete;
     var notifytitle = gamename;
     var notifydesc = allunlocked + " (" + cheevnum + "/" + cheevnum + ")";
-    var notifyicon = "../../../img/ribbon.svg";
+    var notifyicon = path.join(respath,"img","ribbon.svg");
 
     const queueobj = {
         type: "rare",
@@ -7449,7 +7452,7 @@ function SetFontSize() {
     config["fontsize"] = document.getElementById("fontsizeslider").value;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     document.getElementById("webview").reload();
 }
 
@@ -7457,7 +7460,7 @@ function SetFontSizeRare() {
     config["rarefontsize"] = document.getElementById("fontsizesliderrare").value;
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
     paused = false;
-    document.getElementById("pauserare").src = "./icon/pause_white.svg";
+    document.getElementById("pauserare").src = path.join(respath,"icon","pause_white.svg");
     document.getElementById("webviewrare").reload();
 }
 
@@ -7470,24 +7473,24 @@ function SetOpacity() {
 }
 
 function ResetIcon() {
-    document.getElementById("iconselecticon").src = "./img/sanlogosquare.svg"
+    document.getElementById("iconselecticon").src = path.join(respath,"img","sanlogosquare.svg");
 
     config["icon"] = "";
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
 
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     document.getElementById("webview").reload();
 }
 
 function ResetIconRare() {
-    document.getElementById("rareiconselecticon").src = "./img/sanlogosquare.svg"
+    document.getElementById("rareiconselecticon").src = path.join(respath,"img","sanlogosquare.svg");
 
     config["rareicon"] = "";
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
 
     paused = false;
-    document.getElementById("pause").src = "./icon/pause_white.svg";
+    document.getElementById("pause").src = path.join(respath,"icon","pause_white.svg");
     document.getElementById("webviewrare").reload();
 }
 
