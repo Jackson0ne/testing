@@ -1,6 +1,8 @@
 const rev = 0.1;
 document.getElementById("rev").innerHTML = rev;
 
+console.log("This was updated on GitHub! Woop!")
+
 //IMPORT & SET UP MAIN CONTENT
 const { ipcRenderer, desktopCapturer, clipboard } = require('electron');
 const fs = require('fs');
