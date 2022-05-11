@@ -1,9 +1,8 @@
 {
     "main": 0.1,
-    "index": 0.3,
+    "index": 0.1,
     "css": 0.1,
-    "san": 0.2,
+    "san": 0.1,
     "tooltip": 0.1,
-    "preload": 0.1,
-    "notify": 0.2
+    "notify": 0.1
 }
