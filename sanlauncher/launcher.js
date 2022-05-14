@@ -1,3 +1,5 @@
+document.getElementById("maincont").style.opacity = 1
+
 const { ipcRenderer } = require('electron')
 const exec = require('child_process').exec
 const execFile = require('child_process').execFile
