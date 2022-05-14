@@ -113,10 +113,11 @@ function Run() {
                 if (fs.existsSync(path.join(localappdata,appdatadir,"store","launcher.json"))) {
                     var launcher = JSON.parse(fs.readFileSync(path.join(localappdata,appdatadir,"store","launcher.json")))
 
-                    if (launcher.firstlaunch == true) {
+                    // if (launcher.firstlaunch == true) {
                         try {
                             if (process.platform == "win32") {
-                                fs.rmSync(path.join(localappdata,appdatadir,exename))
+                                // fs.rmSync(path.join(localappdata,appdatadir,exename))
+                                spawn('powershell.exe',["-Command",`$currexe = (Get-Item "${path.join(localappdata,appdatadir,exename)}"; $latestexe = (Get-Item "${path.join(__dirname,"store",exename)}"); if ($currexe.VersionInfo.FileVersion -lt $latestexe.VersionInfo.FileVersion) { Remove-Item $currexe -Force }`])
                                 console.log(`%cRemoved previous version of ${exename} from ${localappdata}/${appdatadir}`,"color: aqua")
                             } else if (process.platform == "linux") {
                                 fs.rmSync(path.join(localappdata,appdatadir,appimgname))
@@ -128,7 +129,7 @@ function Run() {
                         } catch (err) {
                             console.log(`%cUnable to remove previous version of Executable from ${localappdata}/${appdatadir}: ` + err,"color: red")
                         }
-                    }
+                    // }
                 }
 
                 CopyFiles()
@@ -327,9 +328,6 @@ function Run() {
                 )
             }
         }
-        
-        // !!! Remove after Beta!
-        randommsg = ["Hey, Beta Testers! 👽"]
 
         function getRandomInt(max) {
             return Math.floor(Math.random() * max);
