@@ -328,6 +328,8 @@ function Run() {
                 )
             }
         }
+        
+        randommsg = ["Hey, Beta Testers! 👽"]
 
         function getRandomInt(max) {
             return Math.floor(Math.random() * max);
