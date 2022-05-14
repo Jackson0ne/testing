@@ -316,7 +316,7 @@ function Run() {
             "Free copy paper?! SWEET!"
         ]
         
-        randommsg = ["Hey Beta Users! 👽"]
+        randommsg = ["Hey, Beta Testers! 👽"]
 
         if (launcher) {
             if (!launcher.user == "") {
