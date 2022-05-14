@@ -315,8 +315,6 @@ function Run() {
             "if (rgb) { fps + 10 }",
             "Free copy paper?! SWEET!"
         ]
-        
-        randommsg = ["Hey, Beta Testers! 👽"]
 
         if (launcher) {
             if (!launcher.user == "") {
@@ -329,6 +327,9 @@ function Run() {
                 )
             }
         }
+        
+        // !!! Remove after Beta!
+        randommsg = ["Hey, Beta Testers! 👽"]
 
         function getRandomInt(max) {
             return Math.floor(Math.random() * max);
