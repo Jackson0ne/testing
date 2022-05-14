@@ -36,7 +36,7 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: deeppink;
+    background: #101010;
     border-radius: 20px;
 }
 
