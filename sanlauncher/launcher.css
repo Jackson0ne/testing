@@ -26,6 +26,7 @@ html, body {
     overflow: hidden;
     user-select: none;
     will-change: contents;
+    opacity: 1;
 }
 
 #maincont {
