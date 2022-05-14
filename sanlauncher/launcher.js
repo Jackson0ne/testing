@@ -315,6 +315,8 @@ function Run() {
             "if (rgb) { fps + 10 }",
             "Free copy paper?! SWEET!"
         ]
+        
+        randommsg = ["Hey Beta Users! 👽"]
 
         if (launcher) {
             if (!launcher.user == "") {
