@@ -120,8 +120,8 @@ function Run() {
                                 spawn('powershell.exe',["-Command",`$currexe = (Get-Item "${path.join(localappdata,appdatadir,exename)}"; $latestexe = (Get-Item "${path.join(__dirname,"store",exename)}"); if ($currexe.VersionInfo.FileVersion -lt $latestexe.VersionInfo.FileVersion) { Remove-Item $currexe -Force }`])
                                 console.log(`%cRemoved previous version of ${exename} from ${localappdata}/${appdatadir}`,"color: aqua")
                             } else if (process.platform == "linux") {
-                                fs.rmSync(path.join(localappdata,appdatadir,appimgname))
-                                console.log(`%cRemoved previous version of ${appimgname} from ${localappdata}/${appdatadir}`,"color: aqua")
+                                // fs.rmSync(path.join(localappdata,appdatadir,appimgname))
+                                // console.log(`%cRemoved previous version of ${appimgname} from ${localappdata}/${appdatadir}`,"color: aqua")
                             }
                             
                             launcher["firstlaunch"] = false
@@ -417,7 +417,14 @@ function Run() {
                                             extract = spawn('powershell.exe',["-Command",`Expand-Archive -Path '${path.join(__dirname,"latest.zip")}' -DestinationPath '${path.join(__dirname)}' -Force; Remove-Item -Path '${path.join(localappdata,appdatadir,"store","app")}' -Recurse -Force; New-Item -Path '${path.join(localappdata,appdatadir,"store")}' -Name "app" -ItemType "directory"; Move-Item -Path '${path.join(__dirname,extractdirname)}\\*' -Destination '${path.join(localappdata,appdatadir,"store","app")}' -Force;`])
                                         } else if (process.platform == "linux") {
                                             // !!! Check if forward slashes are required in "mv" command
-                                            extract = exec(`unzip -q '${path.join(__dirname,"app.zip")}' -d '${__dirname}'; rm -rf '${path.join(localappdata,appdatadir,"store","app")}'; mkdir '${path.join(localappdata,appdatadir,"store","app")}'; mv '${path.join(__dirname,"app",extractdirname) + "/"}' '${path.join(localappdata,appdatadir,"store","app") + "/"}'`)
+                                            fs.copyFile(path.join(__dirname,"store","app.zip"), path.join(localappdata,appdatadir,"app.zip"), (err) => {
+                                                if (err) {
+                                                    console.log("%cZIP COPY ERROR: " + err,"color: red")
+                                                } else {
+                                                    console.log(`%c"app.zip" copied successfully to ~/.local/share/Steam Achievement Notifier (V1.8)`)
+                                                    extract = exec(`unzip -q '${path.join(localappdata,appdatadir,"app.zip")}' -d '${path.join(localappdata,appdatadir)}'; rm -rf '${path.join(localappdata,appdatadir,"store","app")}'; mkdir '${path.join(localappdata,appdatadir,"store","app")}'; mv '${path.join(localappdata,appdatadir,extractdirname) + "/"}' '${path.join(localappdata,appdatadir,"store","app") + "/"}'`)
+                                                }
+                                            })
                                         }
 
                                         extract.on('exit', () => {
