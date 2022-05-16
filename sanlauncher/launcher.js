@@ -425,7 +425,7 @@ function Run() {
                                             extract = spawn('powershell.exe',["-Command",`Expand-Archive -Path '${path.join(__dirname,"latest.zip")}' -DestinationPath '${path.join(__dirname)}' -Force; Remove-Item -Path '${path.join(localappdata,appdatadir,"store","app")}' -Recurse -Force; New-Item -Path '${path.join(localappdata,appdatadir,"store")}' -Name "app" -ItemType "directory"; Move-Item -Path '${path.join(__dirname,extractdirname)}\\*' -Destination '${path.join(localappdata,appdatadir,"store","app")}' -Force;`])
                                         } else if (process.platform == "linux") {
                                             // !!! Check if forward slashes are required in "mv" command
-                                            extract = exec(`unzip -q '${path.join(localappdata,appdatadir,"latest.zip")}' -d '${path.join(localappdata,appdatadir)}'; rm -rf '${path.join(localappdata,appdatadir,"store","app")}'; mkdir '${path.join(localappdata,appdatadir,"store","app")}'; mv '${path.join(localappdata,appdatadir,extractdirname) + "/"}' '${path.join(localappdata,appdatadir,"store","app") + "/"}'`)
+                                            extract = exec(`unzip -q '${path.join(localappdata,appdatadir,"latest.zip")}' -d '${path.join(localappdata,appdatadir)}'; rm -rf '${path.join(localappdata,appdatadir,"store","app")}'; mkdir '${path.join(localappdata,appdatadir,"store","app")}'; mv '${path.join(localappdata,appdatadir,extractdirname) + "/*"}' '${path.join(localappdata,appdatadir,"store","app") + "/"}'`)
                                         }
 
                                         extract.on('exit', () => {
