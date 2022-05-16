@@ -252,7 +252,11 @@ function Run() {
                                 } else {
                                     console.log("%cZIP copied to ~/.local/share/Steam Achievement Notifier (V1.8)", "color: deepskyblue")
                                     filecopy = exec(`unzip -o '${path.join(localappdata,appdatadir,"app.zip")}' -d '${path.join(localappdata,appdatadir,"store","app")}'`)
-                                
+                                    
+                                    filecopy.on('error', (err) => {
+                                        console.log(err)
+                                    })
+                                    
                                     filecopy.on('exit', () => {
                                         console.log("%cAll required files copied!", "color: green")
                                         TestQuit()
@@ -437,6 +441,10 @@ function Run() {
                                         } else if (process.platform == "linux") {
                                             // !!! Check if forward slashes are required in "mv" command
                                             extract = exec(`unzip -o '${path.join(localappdata,appdatadir,"latest.zip")}' -d '${path.join(localappdata,appdatadir)}'; rm -rf '${path.join(localappdata,appdatadir,"store","app")}'; mkdir '${path.join(localappdata,appdatadir,"store","app")}'; mv '${path.join(localappdata,appdatadir,extractdirname) + "/*"}' '${path.join(localappdata,appdatadir,"store","app") + "/"}'; rm -rf '${path.join(localappdata,appdatadir,extractdirname)}'`)
+                                        
+                                            extract.on('error', (err) => {
+                                                console.log(err)
+                                            })
                                         }
 
                                         extract.on('exit', () => {
