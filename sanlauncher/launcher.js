@@ -241,8 +241,8 @@ function Run() {
                         if (process.platform == "win32") {
                             filecopy = spawn('powershell.exe',["-Command",`Expand-Archive -Path "${path.join(__dirname,"store","app.zip")}" -DestinationPath "${path.join(localappdata,appdatadir,"store","app")}"`])
                         } else if (process.platform == "linux") {
-                            fs.copyFile(path.join(__dirname,"store","app.zip"), path.join(localappdata,appdatadir))
-                            filecopy = exec(`unzip -q '${path.join(__dirname,"store","app.zip")}' -d '${path.join(localappdata,appdatadir,"store","app")}'`)
+                            fs.copyFile(path.join(__dirname,"store","app.zip"), path.join(localappdata,appdatadir,"app.zip"))
+                            filecopy = exec(`unzip -q '${path.join(localappdata,appdatadir,"app.zip")}' -d '${path.join(localappdata,appdatadir,"store","app")}'`)
                         }
 
                         filecopy.on('exit', () => {
