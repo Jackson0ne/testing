@@ -36,7 +36,7 @@ var icon;
 
 var logo;
 
-if (config.rareicon == "") {
+if (config.rareicon == "" || config.rareicon == undefined) {
     logo = "../../../img/sanlogosquare.svg";
 } else {
     logo = config.rareicon;

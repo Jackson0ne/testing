@@ -33,7 +33,7 @@ if (config.img == "default") {
 
 var icon;
 
-if (config.icon == "") {
+if (config.icon == "" || config.icon == undefined) {
     icon = "../../../img/sanlogosquare.svg";
 } else {
     icon = config.icon;

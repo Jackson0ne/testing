@@ -42,7 +42,7 @@ if (notifyicon == "test") {
 
 var logo;
 
-if (config.icon == "") {
+if (config.icon == "" || config.icon == undefined) {
     logo = "../../../img/sanlogosquare.svg";
 } else {
     logo = config.icon;

@@ -44,7 +44,7 @@ if (notifyicon == "test") {
 
 var logo;
 
-if (config.rareicon == "") {
+if (config.rareicon == "" || config.rareicon == undefined) {
     logo = "../../../img/steamlogonew.svg";
 } else {
     logo = config.rareicon;

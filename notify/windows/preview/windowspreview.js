@@ -31,7 +31,7 @@ var icon = "../../../img/sanlogosquare.svg";
 
 var toasticon;
 
-if (config.icon == "") {
+if (config.icon == "" || config.icon == undefined) {
     toasticon = "../../../img/sanlogo.svg";
 } else {
     toasticon = config.icon;

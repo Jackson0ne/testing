@@ -31,7 +31,7 @@ var icon = "../../../img/sanlogosquare.svg";
 
 var logo;
 
-if (config.icon == "") {
+if (config.icon == "" || config.icon == undefined) {
     logo = "../../../img/steamlogonew.svg";
 } else {
     logo = config.icon;

@@ -31,7 +31,7 @@ var icon = "../../../img/sanlogosquare.svg";
 
 var toasticon;
 
-if (config.rareicon == "") {
+if (config.rareicon == "" || config.rareicon == undefined) {
     toasticon = "../../../img/sanlogo.svg";
 } else {
     toasticon = config.rareicon;

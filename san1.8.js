@@ -5484,7 +5484,7 @@ function GetBGType() {
     document.getElementById("roundnesspreview").style.borderRadius = (config.roundness * 0.4) + "px";
     document.getElementById("iconroundness").value = config.iconroundness;
     document.getElementById("iconroundnesspreview").style.borderRadius = (config.iconroundness * 0.6) + "px";
-    if (config.icon == "") {
+    if (config.icon == "" || config.icon == undefined) {
         document.getElementById("iconselecticon").src = "./img/sanlogosquare.svg";
     } else {
         document.getElementById("iconselecticon").src = config.icon;
@@ -5544,7 +5544,7 @@ function GetRareBGType() {
     document.getElementById("roundnesspreviewrare").style.borderRadius = (config.rareroundness * 0.4) + "px";
     document.getElementById("iconroundnessrare").value = config.rareiconroundness;
     document.getElementById("iconroundnesspreviewrare").style.borderRadius = (config.rareiconroundness * 0.6) + "px";
-    if (config.rareicon == "") {
+    if (config.rareicon == "" || config.rareicon == undefined) {
         document.getElementById("rareiconselecticon").src = "./img/sanlogosquare.svg";
     } else {
         document.getElementById("rareiconselecticon").src = config.rareicon;
@@ -6885,17 +6885,25 @@ async function StartSAN() {
                 SANIdle();
             } else {
                 fs.stat(`${steampath}/appcache/stats/UserGameStats_${steam3id}_${appid}.bin`, function(err, stats) {
-                    if (stats.mtime > lastmodified) {
-                        console.log("%cFile was changed!", "color: deepskyblue;");
-                        lastmodified = stats.mtime;
+                    if (err) {
+                        console.log("%cFSSTAT ERROR: " + err, "color: red")
+                    } else {
+                        if (stats.mtime > lastmodified) {
+                            console.log("%cFile was changed!", "color: deepskyblue;");
+                            lastmodified = stats.mtime;
 
-                        clearInterval(checkgame);
-                        GetAchievementsFromURL();
+                            clearInterval(checkgame);
+                            GetAchievementsFromURL();
+                        } else {
+                            console.log("%cNo change", "color: red")
+                        }
                     }
                 });
             }
         }, 1000);
     } catch (err) {
+        console.log("%cSTARTSAN ERROR: " + err, "color: red");
+
         var checkappid = setInterval(function() {
             GetAppIDFromRegKey();
 
@@ -7450,10 +7458,21 @@ ipcRenderer.on('saveposrare', (event, x, y) => {
     fs.writeFileSync(path.join(localappdata,"Steam Achievement Notifier (V1.8)","store","config.json"), JSON.stringify(config, null, 2));
 });
 
-document.getElementById("fontsizeslider").value = config.fontsize;
-document.getElementById("fontsizevalue").innerHTML = config.fontsize + "%";
-document.getElementById("fontsizesliderrare").value = config.rarefontsize;
-document.getElementById("fontsizevaluerare").innerHTML = config.rarefontsize + "%";
+if (config.fontsize == undefined) {
+    document.getElementById("fontsizeslider").value = "100";
+    document.getElementById("fontsizevalue").innerHTML = "100%";
+} else {
+    document.getElementById("fontsizeslider").value = config.fontsize;
+    document.getElementById("fontsizevalue").innerHTML = config.fontsize + "%";
+}
+
+if (config.rarefontsize == undefined) {
+    document.getElementById("fontsizesliderrare").value = "100";
+    document.getElementById("fontsizevaluerare").innerHTML = "100%";
+} else {
+    document.getElementById("fontsizesliderrare").value = config.rarefontsize;
+    document.getElementById("fontsizevaluerare").innerHTML = config.rarefontsize + "%";
+}
 
 function SetFontSize() {
     config["fontsize"] = document.getElementById("fontsizeslider").value;
@@ -7471,8 +7490,13 @@ function SetFontSizeRare() {
     document.getElementById("webviewrare").reload();
 }
 
-document.getElementById("opacityslider").value = config.opacity;
-document.getElementById("opacityvalue").innerHTML = document.getElementById("opacityslider").value;
+if (config.opacity == undefined) {
+    document.getElementById("opacityslider").value = "100";
+    document.getElementById("opacityvalue").innerHTML = document.getElementById("opacityslider").value;
+} else {
+    document.getElementById("opacityslider").value = config.opacity;
+    document.getElementById("opacityvalue").innerHTML = document.getElementById("opacityslider").value;
+}
 
 function SetOpacity() {
     config["opacity"] = document.getElementById("opacityslider").value;
