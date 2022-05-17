@@ -973,23 +973,32 @@ const startapp = () => {
                         
                         CheckFilePath()
                     } else {
+                        // Enable below if whitescreen issue is still occurring
+                        // imgwin.webContents.on('did-finish-load', () => {
                         imgwin.webContents.on('paint', (event, dirty, image) => {
-                            fs.writeFile(path.join(ovpath,sandir,gamedir,filename) + ".png", image.toPNG(), (err) => {
-                                if (err) {
-                                    var m = "FILE CREATION ERROR: " + err
-                                    console.log(m)
-                                    win.webContents.send('errormsg', m)
-                                } else {
-                                    var m = "File \"" + filename + ".png\" created successfully in " + path.join(ovpath,gamedir)
-                                    console.log(m)
-                                    win.webContents.send('warnmsg', m)
-                                }
-                            })
+                            //fs.writeFile(path.join(ovpath,sandir,gamedir,filename) + ".png", image.toPNG(), (err) => {
+                            //    if (err) {
+                            //        var m = "FILE CREATION ERROR: " + err
+                            //        console.log(m)
+                            //        win.webContents.send('errormsg', m)
+                            //    } else {
+                            //        var m = "File \"" + filename + ".png\" created successfully in " + path.join(ovpath,sandir,gamedir)
+                            //        console.log(m)
+                            //        win.webContents.send('warnmsg', m)
+                            //    }
+                            //})
+                            
+                            fs.writeFileSync(path.join(ovpath,sandir,gamedir,filename) + ".png", image.toPNG())
+                            var m = `File "${filename}.png" created successfully in ${path.join(ovpath,sandir,gamedir)}`
+                            console.log(m)
+                            win.webContents.send('warnmsg', m)
                             
                             setTimeout(() => {
                                 imgwin.destroy()
                             }, 250)
                         })
+                        // Enable with "did-finish-load" event
+                        // })
                     }
                 }
 
