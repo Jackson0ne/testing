@@ -1,11 +1,11 @@
 @font-face {
     font-family: "Noto Sans";
-    src: url("./fonts/NotoSans-Regular.ttf");
+    src: url("./store/fonts/NotoSans-Regular.ttf");
 }
 
 @font-face {
     font-family: "Source Sans Pro";
-    src: url("./fonts/SourceSansPro-Light.ttf");
+    src: url("./store/fonts/SourceSansPro-Light.ttf");
 }
 
 * {
