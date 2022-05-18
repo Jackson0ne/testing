@@ -439,12 +439,8 @@ function Run() {
                                         if (process.platform == "win32") {
                                             extract = spawn('powershell.exe',["-Command",`Expand-Archive -Path '${path.join(__dirname,"latest.zip")}' -DestinationPath '${path.join(__dirname)}' -Force; Remove-Item -Path '${path.join(localappdata,appdatadir,"store","app")}' -Recurse -Force; New-Item -Path '${path.join(localappdata,appdatadir,"store")}' -Name "app" -ItemType "directory"; Move-Item -Path '${path.join(__dirname,extractdirname)}\\*' -Destination '${path.join(localappdata,appdatadir,"store","app")}' -Force;`])
                                         } else if (process.platform == "linux") {
-                                            // !!! Check if forward slashes are required in "mv" command
-                                            extract = exec(`unzip -o '${path.join(localappdata,appdatadir,"latest.zip")}' -d '${path.join(localappdata,appdatadir)}'; rm -rf '${path.join(localappdata,appdatadir,"store","app")}'; mkdir '${path.join(localappdata,appdatadir,"store","app")}'; mv '${path.join(localappdata,appdatadir,extractdirname) + "/*"}' '${path.join(localappdata,appdatadir,"store","app") + "/"}'; rm -rf '${path.join(localappdata,appdatadir,extractdirname)}'`)
-                                        
-                                            extract.on('error', (err) => {
-                                                console.log(err)
-                                            })
+                                            // Testing quasi-absolute path in "mv" command - does not work if path is in quotes
+                                            extract = exec(`unzip -o '${path.join(localappdata,appdatadir,"latest.zip")}' -d '${path.join(localappdata,appdatadir)}'; rm -rf '${path.join(localappdata,appdatadir,"store","app")}'; mkdir '${path.join(localappdata,appdatadir,"store","app")}'; mv ~/.local/share/${appdatadir}/store/${extractdirname}/* ~/.local/share/${appdatadir}/store/app/; rm -rf '${path.join(localappdata,appdatadir,extractdirname)}'`)
                                         }
 
                                         extract.on('exit', () => {
